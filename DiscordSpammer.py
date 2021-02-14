@@ -10,6 +10,7 @@ import urllib.request
 import json
 from tkinter import messagebox as mbox
 from sys import exit
+import webbrowser
 
 # Init
 
@@ -20,7 +21,7 @@ except:
     pass
 
 if not os.path.isfile(DiscordSpammerFilesPath + "\\DiscordSpammer.ico"):  # If icon is nonexistent, downloading it
-    urllib.request.urlretrieve("https://raw.githubusercontent.com/SiniKraft/website/main/DiscordSpammer.ico",
+    urllib.request.urlretrieve("https://raw.githubusercontent.com/SiniKraft/Discord-Spammer/main/DiscordSpammer.ico",
                                DiscordSpammerFilesPath + "\\DiscordSpammer.ico")
 
 
@@ -155,6 +156,10 @@ def stop_window():  # Executed when the window is destroyed.
     window.destroy()
 
 
+def view_source():
+    webbrowser.open("https://github.com/SiniKraft/Discord-Spammer")
+
+
 # Global vars
 
 global_vars = Var()
@@ -215,7 +220,10 @@ c1.place(x=17, y=145)
 spam_btn = ttk.Button(text="Spam", command=spam)
 spam_btn.place(x=160, y=160)
 
-thread = threading.Thread(target=btn_state, )
+source_btn = ttk.Button(text="View Source", command=view_source)
+source_btn.place(x=280, y=160)
+
+thread = threading.Thread(target=btn_state,)
 thread.start()
 
 window.protocol('WM_DELETE_WINDOW', stop_window)  # Will execute function stop_window instead of instantly deleting it.
