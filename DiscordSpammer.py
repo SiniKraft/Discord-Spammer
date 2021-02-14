@@ -186,7 +186,7 @@ else:
 
 window = tk.Tk()  # Initialising the window
 win_width = 400
-win_height = 200
+win_height = 210
 pos_right = int(window.winfo_screenwidth() / 2 - win_width / 2)
 pos_down = int(window.winfo_screenheight() / 2 - win_height / 2)  # will calculate the window first position.
 window.title("Discord Spammer by SiniKraft v. Alpha 0.1")  # Set title.
@@ -214,14 +214,14 @@ if is_check_box_checked_loaded:
     var1.set(1)
 else:
     var1.set(0)
-c1 = ttk.Checkbutton(window, text='Spam each letter', variable=var1, onvalue=1, offvalue=0)
+c1 = ttk.Checkbutton(window, text='Spam each letter (beta)', variable=var1, onvalue=1, offvalue=0)
 c1.place(x=17, y=145)
 
 spam_btn = ttk.Button(text="Spam", command=spam)
-spam_btn.place(x=160, y=160)
+spam_btn.place(x=160, y=168)
 
 source_btn = ttk.Button(text="View Source", command=view_source)
-source_btn.place(x=280, y=160)
+source_btn.place(x=280, y=168)
 
 thread = threading.Thread(target=btn_state,)
 thread.start()
