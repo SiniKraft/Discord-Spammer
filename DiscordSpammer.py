@@ -1,3 +1,11 @@
+import sys
+from tkinter import messagebox, Tk
+def showerror(type, content, tb):
+    root = Tk()
+    root.withdraw()
+    messagebox.showerror("An error occurred", "{}: {}".format(type, content))
+    root.destroy()
+sys.excepthook = showerror
 import keyboard  # pip install keyboard
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -9,8 +17,9 @@ import os
 import urllib.request
 import json
 from tkinter import messagebox as mbox
-from sys import exit
+from sys import exit as s_exit
 import webbrowser
+import psutil
 
 # Init
 
@@ -131,13 +140,13 @@ def spam():  # Executed when the Spam btn is clicked.
     except:
         mbox.showerror("Invalid input", "The delay input is invalid !")
         window.destroy()
-        exit()
+        s_exit()
     try:
         global_vars.set_value("numberToSpam", int(str(input_number_txt.get("1.0", tk.END)[:-1]).lstrip("0")))
     except:
         mbox.showerror("Invalid input", "The delay input is invalid !")
         window.destroy()
-        exit()
+        s_exit()
     copy(input_txt.get("1.0", tk.END)[:-1])
     t2 = threading.Thread(target=notify, args=("Spamming in 5 seconds ...", 4), )
     ttt2 = threading.Thread(target=notify, args=("Spamming in 5 seconds ...", 4), )
@@ -154,10 +163,21 @@ def stop_window():  # Executed when the window is destroyed.
     global_vars.set_value("isWindowAlive", False)
     save_settings()
     window.destroy()
+    kill()
+    s_exit()
 
 
 def view_source():
     webbrowser.open("https://github.com/SiniKraft/Discord-Spammer")
+
+
+def kill():
+    PROC_NAME = "DiscordSpammer.exe"
+
+    for proc in psutil.process_iter():
+        # check whether the process name matches
+        if proc.name() == PROC_NAME:
+            proc.kill()
 
 
 # Global vars
@@ -189,7 +209,7 @@ win_width = 400
 win_height = 210
 pos_right = int(window.winfo_screenwidth() / 2 - win_width / 2)
 pos_down = int(window.winfo_screenheight() / 2 - win_height / 2)  # will calculate the window first position.
-window.title("Discord Spammer by SiniKraft v. Alpha 0.1")  # Set title.
+window.title("Discord Spammer by SiniKraft v. Alpha 0.3")  # Set title.
 window.resizable(0, 0)  # Make the window can't be resized.
 window.geometry("{0}x{1}+{2}+{3}".format(win_width, win_height, pos_right, pos_down))  # Set window properties.
 
