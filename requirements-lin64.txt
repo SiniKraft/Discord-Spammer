@@ -1,0 +1,7 @@
+pip>=21.1.2
+setuptools>=44.1.1
+keyboard>=0.13.5
+py-notifier>=0.9
+pyperclip>=1.8.2
+simpleaudio>=1.0.4
+psutil>=5.8.0
