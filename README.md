@@ -16,5 +16,4 @@ Made for easy MP spamming on Discord ! WARNING : you may be reported !
 > t  
 > Warning : This option is a snapshot and may miss some letters !  
 ***  
-## Known issues :  
-App not working if it's the third time you click on 'spam', restart the app and it will be OK.  
+
